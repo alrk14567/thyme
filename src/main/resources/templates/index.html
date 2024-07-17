@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>인덱스</title>
+    <link rel="stylesheet" href="/css/header.css">
+
+</head>
+<body>
+<div th:replace="~{asset :: header}"></div> <!--앞에 있는게 헤더.html 뒤에있는게 div 헤더-->
+<!--    타임 리프는 태그 안에 넣어준다.-->
+    <h1 th:text="${user}" style="color: red"></h1>
+    <h1 th:text="${user}" style="color: orangered"></h1>
+    <h1 th:text="${user}" style="color: yellow"></h1>
+    <h1 th:text="${user}" style="color: green"></h1>
+    <h1 th:text="${user}" style="color: blue"></h1>
+    <h1 th:text="${user}" style="color: midnightblue"></h1>
+    <h1 th:text="${user}" style="color: purple"></h1>
+<!--url을 적어줄때에는 @ { url주소}로 적어준다.-->
+<a th:href="@{/board/showAll}">게시판 목록으로</a>
+<div th:replace="~{asset :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div th:replace="~{asset :: header(user='kidon')}"></div>   <!--여기서 물결을 해주면 경로가 템플릿으로 잡힌다-->
+<!--타임리프에 맞는 코드작성법으로 텍스트는 쌍따옴표 안에 작은따옴표로 해줘야함-->
+<a th:href="@{/board/write}">글 작성하기</a> <br/>
+<table class="table table-info">
+    <thead>
+    <tr>
+        <td>번호</td>
+        <td>제목</td>
+        <td>작성자</td>
+        <td>작성일</td>
+    </tr>
+    <tr class="table table-light" th:each="b : ${list}" th:object="${b}"  th:onclick="|location.href='@{/board/showOne/{id}(id=*{id})}'|">
+        <td th:text="*{id}"></td>
+        <td><a th:href="@{/board/showOne/{id}(id=${b.id})}" th:text="${b.title}"></a></td>
+        <td th:text="${b.getNickname()}"></td>
+        <td th:text="${#dates.format(b.entryDate,'yy년 MM월 dd일 HH시 mm분 ss초')}"></td>
+    </tr>
+    </thead>
+</table>
+</body>
+</html>
